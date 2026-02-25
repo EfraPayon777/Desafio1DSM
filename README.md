@@ -14,4 +14,5 @@ Funcionalidades Principales
   •Lenguaje: Kotlin•Diseno: ConstraintLayout, Material CardView y ShapeableImageView para avatares personalizados.
   •Estilo: Flat UI (Colores solidos, sin sombras, minimalista).
   Video de Demostracion Puedes ver la aplicacion en funcionamiento a traves del siguiente enlace:
+	
   https://drive.google.com/file/d/1cnsSc2Y1J5w4LG8DKNTRjbugu7P605P2/view?usp=sharingDesarrollado por Efrain Cortez - 2025
