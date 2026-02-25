@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.DesafioPractico1" parent="Base.Theme.DesafioPractico1" />
+
+    <!-- <style name="Theme.DesafioPractico1" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_flat</item>
+        <item name="android:windowBackground">@color/background_flat</item>
+        <item name="elevation">0dp</item>
+    </style> -->
 </resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvTituloSalario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CÁLCULO DE SALARIO"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#4FC3F7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etNombreEmpleado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del empleado"
+        android:inputType="textPersonName"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloSalario" />
+
+    <EditText
+        android:id="@+id/etSalarioBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Salario Base ($)"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/etNombreEmpleado" />
+
+    <Button
+        android:id="@+id/btnCalcularSalario"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="CALCULAR SALARIO NETO"
+        android:backgroundTint="#4FC3F7"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/etSalarioBase" />
+
+    <TextView
+        android:id="@+id/tvDetalleSalario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Los descuentos se mostrarán aquí"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/btnCalcularSalario" />
+
+    <Button
+        android:id="@+id/btnRegresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGRESAR"
+        android:backgroundTint="#757575"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
