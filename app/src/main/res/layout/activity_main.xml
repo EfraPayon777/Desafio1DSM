@@ -4,62 +4,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@color/background_flat">
+    android:background="#F5F5F5">
+
+    <!-- Header Flat Cyan -->
+    <View
+        android:id="@+id/headerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#4FC3F7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Avatar Circular (ShapeableImageView) -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="48dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+        android:background="#FFFFFF" />
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DESAFÍO PRÁCTICO 1"
-        android:textSize="24sp"
+        android:layout_marginTop="16dp"
+        android:text="Desafío Práctico 1"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/primary_dark_flat"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar" />
 
-    <Button
-        android:id="@+id/btnEjercicio1"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:text="Ejercicio 1: Promedio"
-        android:backgroundTint="@color/primary_flat"
-        app:cornerRadius="4dp"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
+    <TextView
+        android:id="@+id/tvUserRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desarrollo de Software para Móvil"
+        android:textColor="#E0F7FA"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvUserName" />
 
-    <Button
-        android:id="@+id/btnEjercicio2"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:text="Ejercicio 2: Salario"
-        android:backgroundTint="@color/primary_flat"
-        app:cornerRadius="4dp"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
-        app:layout_constraintTop_toBottomOf="@id/btnEjercicio1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+    <!-- Contenedor de Botones (Flat System) -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerBackground">
 
-    <Button
-        android:id="@+id/btnEjercicio3"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:text="Ejercicio 3: Calculadora"
-        android:backgroundTint="@color/primary_flat"
-        app:cornerRadius="4dp"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
-        app:layout_constraintTop_toBottomOf="@id/btnEjercicio2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        <Button
+            android:id="@+id/btnEjercicio1"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#4FC3F7"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:text="Ejercicio 1: Promedio"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="4dp" />
+
+        <Button
+            android:id="@+id/btnEjercicio2"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#4FC3F7"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:text="Ejercicio 2: Salario"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="4dp" />
+
+        <Button
+            android:id="@+id/btnEjercicio3"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#263238"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:text="Ejercicio 3: Calculadora"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="#EEEEEE" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Universidad Don Bosco 2025"
+            android:textColor="#757575"
+            android:textSize="12sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
