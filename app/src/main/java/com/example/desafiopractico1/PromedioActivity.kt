@@ -57,12 +57,12 @@ class PromedioActivity : AppCompatActivity() {
 
                 val promedio = (nota1Progress * 0.15) + (n2 * 0.15) + (n3 * 0.20) + (n4 * 0.25) + (n5 * 0.25)
                 val df = DecimalFormat("0.00")
-                val estado = if (promedio >= 6.0) "APROBADO" else "REPROBADO"
+                val estado = if (promedio >= 5.95) "APROBADO" else "REPROBADO"
 
                 tvResultado.text = "Estudiante: $nombre\nPromedio: ${df.format(promedio)}\nEstado: $estado"
 
                 if (swResaltar.isChecked) {
-                    val color = if (promedio >= 6.0) 0xFF4CAF50.toInt() else 0xFFE57373.toInt()
+                    val color = if (promedio >= 5.95) 0xFF4CAF50.toInt() else 0xFFE57373.toInt()
                     tvResultado.setBackgroundColor(color)
                 } else {
                     tvResultado.setBackgroundColor(0xFF263238.toInt())
