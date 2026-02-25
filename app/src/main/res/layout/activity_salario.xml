@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<?xml version="1.0" encoding="utf-8"?><androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
@@ -15,18 +14,22 @@
         android:background="#4FC3F7"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgEmployeeIcon"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="24dp"
-        android:padding="8dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mi_foto"
+        android:background="#FFFFFF"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@id/headerSalario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/headerSalario"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
-        android:background="#FFFFFF" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,7 +89,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
+    <!-- Tarjeta de Resultados Flat Carbón -->
     <androidx.cardview.widget.CardView
         android:id="@+id/resultCard"
         android:layout_width="match_parent"
@@ -103,7 +106,6 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-
             <TextView
                 android:id="@+id/tvDetalleEmpleado"
                 android:layout_width="match_parent"
@@ -115,14 +117,10 @@
 
             <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#44FFFFFF" android:layout_marginVertical="12dp"/>
 
-            <!-- ID: tvISSS -->
             <TextView android:id="@+id/tvISSS" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ISSS (3%): $0.00" android:textColor="#FFFFFF" />
-            <!-- ID: tvAFP -->
             <TextView android:id="@+id/tvAFP" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="AFP (7.25%): $0.00" android:textColor="#FFFFFF" />
-            <!-- ID: tvRenta -->
             <TextView android:id="@+id/tvRenta" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Renta: $0.00" android:textColor="#FFFFFF" />
 
-            <!-- ID: tvSalarioLiquido -->
             <TextView
                 android:id="@+id/tvSalarioLiquido"
                 android:layout_width="match_parent"
@@ -136,7 +134,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- ID: btnBack -->
+    <!-- Botón Regresar -->
     <Button
         android:id="@+id/btnBack"
         style="@style/Widget.MaterialComponents.Button.TextButton"

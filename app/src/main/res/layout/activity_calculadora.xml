@@ -15,18 +15,22 @@
         android:background="#4FC3F7"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgToolIcon"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="24dp"
-        android:padding="8dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mi_foto"
+        android:background="#FFFFFF"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@id/headerCalc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/headerCalc"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
-        android:background="#FFFFFF" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle" />
 
     <TextView
         android:layout_width="wrap_content"

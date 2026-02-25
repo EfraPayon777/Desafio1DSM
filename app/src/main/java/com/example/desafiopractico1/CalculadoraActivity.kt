@@ -41,7 +41,7 @@ class CalculadoraActivity : AppCompatActivity() {
         val n1Str = etNum1.text.toString()
         val n2Str = etNum2.text.toString()
 
-        // Validación de campos vacíos
+
         if (n1Str.isEmpty()) {
             etNum1.error = "Ingrese un número"
             return

@@ -14,19 +14,22 @@
         android:background="#4FC3F7"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Avatar Circular (ShapeableImageView) -->
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgAvatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="48dp"
-        android:padding="4dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="40dp"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mi_foto"
+        android:background="#FFFFFF"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
-        android:background="#FFFFFF" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle" />
 
     <TextView
         android:id="@+id/tvUserName"
