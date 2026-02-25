@@ -1,67 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:padding="20dp">
+    android:background="#F5F5F5">
+
+    <!-- Header Flat Cyan -->
+    <View
+        android:id="@+id/headerSalario"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#4FC3F7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgEmployeeIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="@id/headerSalario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerSalario"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+        android:background="#FFFFFF" />
 
     <TextView
-        android:id="@+id/tvTituloSalario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CÁLCULO DE SALARIO"
+        android:layout_marginStart="16dp"
+        android:text="Cálculo de Salario"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#4FC3F7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/imgEmployeeIcon"
+        app:layout_constraintStart_toEndOf="@id/imgEmployeeIcon"
+        app:layout_constraintTop_toTopOf="@id/imgEmployeeIcon" />
 
-    <EditText
-        android:id="@+id/etNombreEmpleado"
+    <!-- Formulario de Entrada -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/formArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre del empleado"
-        android:inputType="textPersonName"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloSalario" />
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintTop_toBottomOf="@id/headerSalario">
 
-    <EditText
-        android:id="@+id/etSalarioBase"
+        <EditText
+            android:id="@+id/etNombreEmpleado"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/white"
+            android:hint="Nombre del empleado"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="16dp"
+            android:textColor="#263238"
+            android:textColorHint="#BDBDBD" />
+
+        <EditText
+            android:id="@+id/etSalarioBase"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/white"
+            android:hint="Salario Base ($)"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="16dp"
+            android:textColor="#263238"
+            android:textColorHint="#BDBDBD" />
+
+        <Button
+            android:id="@+id/btnCalcularSalario"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#4FC3F7"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:text="Calcular Salario Líquido"
+            app:cornerRadius="4dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/resultCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Salario Base ($)"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNombreEmpleado" />
+        android:layout_margin="24dp"
+        app:cardBackgroundColor="#263238"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/formArea">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+
+            <TextView
+                android:id="@+id/tvDetalleEmpleado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Empleado: ---"
+                android:textColor="#4FC3F7"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#44FFFFFF" android:layout_marginVertical="12dp"/>
+
+            <!-- ID: tvISSS -->
+            <TextView android:id="@+id/tvISSS" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ISSS (3%): $0.00" android:textColor="#FFFFFF" />
+            <!-- ID: tvAFP -->
+            <TextView android:id="@+id/tvAFP" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="AFP (7.25%): $0.00" android:textColor="#FFFFFF" />
+            <!-- ID: tvRenta -->
+            <TextView android:id="@+id/tvRenta" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Renta: $0.00" android:textColor="#FFFFFF" />
+
+            <!-- ID: tvSalarioLiquido -->
+            <TextView
+                android:id="@+id/tvSalarioLiquido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Líquido: $0.00"
+                android:textAlignment="viewEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ID: btnBack -->
     <Button
-        android:id="@+id/btnCalcularSalario"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="CALCULAR SALARIO NETO"
-        android:backgroundTint="#4FC3F7"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/etSalarioBase" />
-
-    <TextView
-        android:id="@+id/tvDetalleSalario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Los descuentos se mostrarán aquí"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/btnCalcularSalario" />
-
-    <Button
-        android:id="@+id/btnRegresar"
+        android:id="@+id/btnBack"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGRESAR"
-        android:backgroundTint="#757575"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
+        android:layout_marginBottom="16dp"
+        android:text="← Volver al Menú"
+        android:textColor="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

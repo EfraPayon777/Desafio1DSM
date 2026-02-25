@@ -9,52 +9,65 @@ import java.text.DecimalFormat
 
 class SalarioActivity : AppCompatActivity() {
 
+    private val df = DecimalFormat("$#,##0.00")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_salario)
 
         val etNombre = findViewById<EditText>(R.id.etNombreEmpleado)
-        val etSalario = findViewById<EditText>(R.id.etSalarioBase)
+        val etSalarioBase = findViewById<EditText>(R.id.etSalarioBase)
         val btnCalcular = findViewById<Button>(R.id.btnCalcularSalario)
-        val tvDetalle = findViewById<TextView>(R.id.tvDetalleSalario)
-        val btnRegresar = findViewById<Button>(R.id.btnRegresar)
+
+        // Vistas de resultados
+        val tvDetalle = findViewById<TextView>(R.id.tvDetalleEmpleado)
+        val tvISSS = findViewById<TextView>(R.id.tvISSS)
+        val tvAFP = findViewById<TextView>(R.id.tvAFP)
+        val tvRenta = findViewById<TextView>(R.id.tvRenta)
+        val tvLiquido = findViewById<TextView>(R.id.tvSalarioLiquido)
 
         btnCalcular.setOnClickListener {
-            val baseStr = etSalario.text.toString()
-            if (baseStr.isNotEmpty()) {
-                val salarioBase = baseStr.toDouble()
-                if (salarioBase > 0) {
-                    procesarSalario(etNombre.text.toString(), salarioBase, tvDetalle)
-                } else {
-                    etSalario.error = "El salario debe ser positivo"
-                }
+            val nombre = etNombre.text.toString()
+            val salarioStr = etSalarioBase.text.toString()
+
+            if (nombre.isEmpty()) {
+                etNombre.error = "Ingrese nombre"
+                return@setOnClickListener
             }
+            if (salarioStr.isEmpty() || salarioStr.toDouble() <= 0) {
+                etSalarioBase.error = "Ingrese un salario positivo"
+                return@setOnClickListener
+            }
+
+            val salarioBase = salarioStr.toDouble()
+
+            // 1. Calcular deducciones fijas
+            val isss = salarioBase * 0.03
+            val afp = salarioBase * 0.0725
+
+            // 2. Monto imponible para Renta (Salario Base - ISSS - AFP)
+            val montoImponible = salarioBase - isss - afp
+
+            // 3. Calcular Renta usando la función de tramos
+            val renta = calcularRenta(montoImponible)
+
+            // 4. Salario Líquido Final
+            val salarioLiquido = montoImponible - renta
+
+            // Mostrar resultados
+            tvDetalle.text = "Empleado: $nombre"
+            tvISSS.text = "ISSS (3%): ${df.format(isss)}"
+            tvAFP.text = "AFP (7.25%): ${df.format(afp)}"
+            tvRenta.text = "Renta: ${df.format(renta)}"
+            tvLiquido.text = "Líquido: ${df.format(salarioLiquido)}"
         }
 
-        btnRegresar.setOnClickListener { finish() }
+        findViewById<Button>(R.id.btnBack).setOnClickListener { finish() }
     }
 
-    private fun procesarSalario(nombre: String, base: Double, vista: TextView) {
-        val isss = base * 0.03
-        val afp = base * 0.0725
-        val mImponible = base - isss - afp
-        val renta = calcularRenta(mImponible)
-        val liquido = mImponible - renta
-
-        val df = DecimalFormat("$#,##0.00")
-        vista.text = """
-            Empleado: $nombre
-            Salario Base: ${df.format(base)}
-            (-) ISSS (3%): ${df.format(isss)}
-            (-) AFP (7.25%): ${df.format(afp)}
-            --------------------------
-            Monto Gravable: ${df.format(mImponible)}
-            (-) Renta: ${df.format(renta)}
-            --------------------------
-            SALARIO LÍQUIDO: ${df.format(liquido)}
-        """.trimIndent()
-    }
-
+    /**
+     * Lógica de tramos de Renta 
+     */
     private fun calcularRenta(monto: Double): Double {
         return when {
             monto <= 472.00 -> 0.0

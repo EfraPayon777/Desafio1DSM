@@ -5,105 +5,149 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:padding="20dp">
+    android:background="#F5F5F5">
+
+    <!-- Header Flat Cyan -->
+    <View
+        android:id="@+id/headerPromedio"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#4FC3F7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgStudentIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="@id/headerPromedio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerPromedio"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+        android:background="#FFFFFF" />
 
     <TextView
-        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CÁLCULO DE PROMEDIO"
-        android:textSize="22sp"
+        android:layout_marginStart="16dp"
+        android:text="Promedio de Notas"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#4FC3F7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/imgStudentIcon"
+        app:layout_constraintStart_toEndOf="@id/imgStudentIcon"
+        app:layout_constraintTop_toTopOf="@id/imgStudentIcon" />
 
-
-    <EditText
-        android:id="@+id/etNombreEstudiante"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre del estudiante"
-        android:inputType="textPersonName"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btnBack"
+        app:layout_constraintTop_toBottomOf="@id/headerPromedio">
 
-    <EditText
-        android:id="@+id/etNota1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nota 1 (15%)"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNombreEstudiante" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-    <EditText
-        android:id="@+id/etNota2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nota 2 (15%)"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNota1" />
+            <EditText
+                android:id="@+id/etNombreEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@android:color/white"
+                android:hint="Nombre del estudiante"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="16dp"
+                android:textColor="#263238" />
 
-    <EditText
-        android:id="@+id/etNota3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nota 3 (20%)"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNota2" />
+            <!-- Selector de Notas con SeekBar -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Ajuste de Notas (0 - 10)"
+                android:textColor="#757575"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/etNota4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nota 4 (25%)"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNota3" />
+            <!-- Ejemplo de un item de nota con SeekBar Flat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etNota5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nota 5 (25%)"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNota4" />
+                <TextView
+                    android:id="@+id/tvLabelNota1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nota 1 (15%): 0.0"
+                    android:textColor="#757575"/>
+
+                <SeekBar
+                    android:id="@+id/sbNota1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progressDrawable="@android:color/transparent"
+                    android:splitTrack="false"
+                    android:thumbTint="#4FC3F7" />
+
+
+                <EditText android:id="@+id/etNota2" android:layout_marginTop="8dp" android:hint="Nota 2 (15%)" style="@style/FlatInputStyle" android:layout_width="match_parent" android:layout_height="48dp" android:background="@android:color/white" android:paddingHorizontal="16dp" android:inputType="numberDecimal"/>
+                <EditText android:id="@+id/etNota3" android:layout_marginTop="8dp" android:hint="Nota 3 (20%)" style="@style/FlatInputStyle" android:layout_width="match_parent" android:layout_height="48dp" android:background="@android:color/white" android:paddingHorizontal="16dp" android:inputType="numberDecimal"/>
+                <EditText android:id="@+id/etNota4" android:layout_marginTop="8dp" android:hint="Nota 4 (25%)" style="@style/FlatInputStyle" android:layout_width="match_parent" android:layout_height="48dp" android:background="@android:color/white" android:paddingHorizontal="16dp" android:inputType="numberDecimal"/>
+                <EditText android:id="@+id/etNota5" android:layout_marginTop="8dp" android:hint="Nota 5 (25%)" style="@style/FlatInputStyle" android:layout_width="match_parent" android:layout_height="48dp" android:background="@android:color/white" android:paddingHorizontal="16dp" android:inputType="numberDecimal"/>
+            </LinearLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swAprobarMinimo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Resaltar si aprueba (min. 6.0)"
+                app:thumbTint="#4FC3F7"
+                app:trackTint="#B2EBF2" />
+
+            <Button
+                android:id="@+id/btnCalcularPromedio"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#4FC3F7"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                android:text="Calcular Promedio Final"
+                app:cornerRadius="4dp" />
+
+            <!-- Resultado Flat -->
+            <TextView
+                android:id="@+id/tvResultadoPromedio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="#263238"
+                android:padding="24dp"
+                android:text="PROMEDIO: ---"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
-        android:id="@+id/btnCalcular"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="CALCULAR PROMEDIO"
-        android:backgroundTint="#4FC3F7"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/etNota5" />
-
-    <TextView
-        android:id="@+id/tvResultado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Resultado: --"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:layout_marginTop="16dp"
-        android:textColor="#333333"
-        app:layout_constraintTop_toBottomOf="@id/btnCalcular"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnRegresar"
+        android:id="@+id/btnBack"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGRESAR"
-        android:backgroundTint="#757575"
-        android:elevation="0dp"
-        android:stateListAnimator="@null"
+        android:layout_marginBottom="16dp"
+        android:text="← Volver al Menú"
+        android:textColor="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="10dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,75 +4,77 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 class CalculadoraActivity : AppCompatActivity() {
+
+    private lateinit var etNum1: EditText
+    private lateinit var etNum2: EditText
+    private lateinit var tvResultado: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculadora)
 
-        val etN1 = findViewById<EditText>(R.id.etNum1)
-        val etN2 = findViewById<EditText>(R.id.etNum2)
-        val tvRes = findViewById<TextView>(R.id.tvResultadoCalc)
+        // Inicializar vistas
+        etNum1 = findViewById(R.id.etNum1)
+        etNum2 = findViewById(R.id.etNum2)
+        tvResultado = findViewById(R.id.tvResultado)
 
+        val btnSuma = findViewById<Button>(R.id.btnSuma)
+        val btnResta = findViewById<Button>(R.id.btnResta)
+        val btnMulti = findViewById<Button>(R.id.btnMulti)
+        val btnDiv = findViewById<Button>(R.id.btnDiv)
+        val btnBack = findViewById<Button>(R.id.btnBack)
 
-        findViewById<Button>(R.id.btnSuma).setOnClickListener { operar(etN1, etN2, tvRes, "+") }
-        findViewById<Button>(R.id.btnResta).setOnClickListener { operar(etN1, etN2, tvRes, "-") }
-        findViewById<Button>(R.id.btnMulti).setOnClickListener { operar(etN1, etN2, tvRes, "*") }
-        findViewById<Button>(R.id.btnDiv).setOnClickListener { operar(etN1, etN2, tvRes, "/") }
+        // Operaciones
+        btnSuma.setOnClickListener { calcular("+") }
+        btnResta.setOnClickListener { calcular("-") }
+        btnMulti.setOnClickListener { calcular("*") }
+        btnDiv.setOnClickListener { calcular("/") }
 
-
-        findViewById<Button>(R.id.btnExp).setOnClickListener { operar(etN1, etN2, tvRes, "pow") }
-        findViewById<Button>(R.id.btnRaiz).setOnClickListener { operar(etN1, etN2, tvRes, "sqrt") }
-
-        findViewById<Button>(R.id.btnRegresar).setOnClickListener { finish() }
+        btnBack.setOnClickListener { finish() }
     }
 
-    private fun operar(et1: EditText, et2: EditText, tv: TextView, op: String) {
-        val s1 = et1.text.toString()
+    private fun calcular(operador: String) {
+        val n1Str = etNum1.text.toString()
+        val n2Str = etNum2.text.toString()
 
-        if (s1.isEmpty()) {
-            et1.error = "Ingrese el primer número"
+        // Validación de campos vacíos
+        if (n1Str.isEmpty()) {
+            etNum1.error = "Ingrese un número"
+            return
+        }
+        if (n2Str.isEmpty()) {
+            etNum2.error = "Ingrese un número"
             return
         }
 
-        val n1 = s1.toDouble()
+        val n1 = n1Str.toDouble()
+        val n2 = n2Str.toDouble()
+        var resultado = 0.0
 
-
-        if (op == "sqrt") {
-            if (n1 < 0) {
-                et1.error = "No existe raíz de números negativos"
-            } else {
-                tv.text = "Resultado: ${sqrt(n1)}"
+        when (operador) {
+            "+" -> resultado = n1 + n2
+            "-" -> resultado = n1 - n2
+            "*" -> resultado = n1 * n2
+            "/" -> {
+                if (n2 == 0.0) {
+                    etNum2.error = "No se puede dividir por cero"
+                    Toast.makeText(this, "Error: División por 0", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                resultado = n1 / n2
             }
-            return
         }
 
+        mostrarResultado(resultado)
+    }
 
-        val s2 = et2.text.toString()
-        if (s2.isEmpty()) {
-            et2.error = "Ingrese el segundo número"
-            return
-        }
-        val n2 = s2.toDouble()
+    private fun mostrarResultado(res: Double) {
 
-        val res = when (op) {
-            "+" -> n1 + n2
-            "-" -> n1 - n2
-            "*" -> n1 * n2
-            "/" -> if (n2 != 0.0) n1 / n2 else {
-                et2.error = "No se puede dividir entre 0"
-                null
-            }
-            "pow" -> n1.pow(n2)
-            else -> 0.0
-        }
-
-        if (res != null) {
-            tv.text = "Resultado: $res"
-        }
+        val format = if (res % 1 == 0.0) res.toInt().toString() else res.toString()
+        tvResultado.text = "Resultado: $format"
     }
 }
