@@ -12,7 +12,7 @@ Funcionalidades Principales
   •Realiza operaciones matematicas fundamentales y avanzadas.
   •Operaciones disponibles: Suma, Resta, Multiplicacion, Division, Exponente y Raiz Cuadrada.•Posee validaciones para evitar errores por division entre cero o raices de numeros negativos.Tecnologias Utilizadas
   •Lenguaje: Kotlin•Diseno: ConstraintLayout, Material CardView y ShapeableImageView para avatares personalizados.
-  •Estilo: Flat UI (Colores solidos, sin sombras, minimalista).
+  •Estilo: Flat UI.
   Video de Demostracion Puedes ver la aplicacion en funcionamiento a traves del siguiente enlace:
 	
   https://drive.google.com/file/d/1cnsSc2Y1J5w4LG8DKNTRjbugu7P605P2/view?usp=sharingDesarrollado por Efrain Cortez - 2025
